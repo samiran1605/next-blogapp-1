@@ -1,3 +1,23 @@
 .container{
+flex: 2;
+margin-top: 60px;
+}
 
+.subtitle{
+  font-size: 16px;
+  color: gray;
+  font-weight: 400;
+}
+
+.title{
+  font-size: 28px;
+}
+
+.item{
+  display: flex;
+}
+
+.image{
+  border-radius: 50%;
+  position: relative;
 }
