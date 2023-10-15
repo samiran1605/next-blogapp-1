@@ -22,6 +22,8 @@ margin-top: 30px;
 
 .image{
   object-fit: cover;
+  mix-blend-mode: multiply;
+  filter: contrast(1);
 }
 
 .textContainer{
