@@ -24,12 +24,12 @@
   border-radius: 8px;
 }
 
-.category.style{
-  background-color: #57c4ff31;
-}
-
 .image{
   border-radius: 50%;
+}
+
+.category.style{
+  background-color: #57c4ff31;
 }
 
 .category.fashion{

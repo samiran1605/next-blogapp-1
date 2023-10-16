@@ -1,14 +1,4 @@
   
-  .subtitle{
-    font-size: 16px;
-    color: gray;
-    font-weight: 400;
-  }
-  
-  .title{
-    font-size: 28px;
-  }
-  
   .items{
   margin-top: 35px;
   margin-bottom: 68px;
@@ -70,7 +60,7 @@
     width: max-content;
   }
   .category.code{
-    background-color: #1f007a;
+    background-color: #0b328d50;
     width: max-content;
   }
   .details{
