@@ -2,13 +2,21 @@
 
 import Link from "next/link";
 import styles from "./authLinks.module.css";
-
 import React, { useState } from "react";
+import { signOut } from "next-auth/react";
 
 const AuthLinks = () => {
   const [open, setOpen] = useState(false);
 
-  const status = "notauthenticated";
+  const status = "authenticated";
+
+  const handleLogout = (
+    event: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) => {
+    if (event.type === "click") {
+      signOut();
+    }
+  };
   return (
     <>
       {status === "notauthenticated" ? (
@@ -20,7 +28,9 @@ const AuthLinks = () => {
           <Link href="/write" className={styles.link}>
             Write
           </Link>
-          <span className={styles.link}>Logout</span>
+          <span className={styles.link} onClick={handleLogout}>
+            Logout
+          </span>
         </>
       )}
       <div className={styles.burger} onClick={() => setOpen(!open)}>
