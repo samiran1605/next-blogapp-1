@@ -2,18 +2,8 @@ import React from "react";
 import styles from "./categoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
-
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/categories", {
-    cache: "no-cache",
-  });
-
-  if (!res.ok) {
-    throw new Error("failed to fetch category");
-  }
-
-  return res.json();
-};
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import { get } from "http";
 
 type CategoriesListType = {
   _id: string;
@@ -22,25 +12,39 @@ type CategoriesListType = {
   img: string;
 };
 
+const getdata = async () => {
+  const res = await fetch("http://localhost:3000/api/categories", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("failed to fetch page from cardlist");
+  }
+
+  return res.json();
+};
+
 const CategoryList = async () => {
-  const data: CategoriesListType[] = await getData();
+  const data = await getdata();
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Popular Categories</h1>
       <div className={styles.categories}>
-        {data?.map((item) => (
+        {data?.map((item: CategoriesListType) => (
           <Link
             href="/blog?cat=style"
-            className={`${styles.category} ${styles.style}`}
+            className={`${styles.category} ${styles[item.slug]}`}
             key={item._id}
           >
-            <Image
-              src={item.img}
-              alt=""
-              width={32}
-              height={32}
-              className={styles.image}
-            />
+            {item.img && (
+              <Image
+                src={item.img}
+                alt=""
+                width={32}
+                height={32}
+                className={styles.image}
+              />
+            )}
             {item.title}
           </Link>
         ))}

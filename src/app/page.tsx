@@ -5,13 +5,17 @@ import CardList from "@/components/cardList/CardList";
 import Menu from "@/components/Menu/Menu";
 import CategoryList from "@/components/categoryList/CategoryList";
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams: any }) {
+  const Page = parseInt(searchParams.page) || 1;
   return (
     <div className={styles.container}>
       <Featured />
+
+      {/*@ts-expect-error Async Server Component*/}
       <CategoryList />
       <div className={styles.content}>
-        <CardList />
+        {/*@ts-expect-error Async Server Component*/}
+        <CardList page={Page} />
         <Menu />
       </div>
     </div>
