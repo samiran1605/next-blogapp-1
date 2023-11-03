@@ -2,8 +2,6 @@ import React from "react";
 import styles from "./categoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-import { get } from "http";
 
 type CategoriesListType = {
   _id: string;
@@ -32,7 +30,7 @@ const CategoryList = async () => {
       <div className={styles.categories}>
         {data?.map((item: CategoriesListType) => (
           <Link
-            href="/blog?cat=style"
+            href="/Blog?cat=style"
             className={`${styles.category} ${styles[item.slug]}`}
             key={item._id}
           >

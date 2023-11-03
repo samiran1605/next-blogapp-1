@@ -7,23 +7,24 @@ export const Card = ({ key, item }) => {
   return (
     <div className={styles.container} key={key}>
       <div className={styles.imageContainer}>
-        <Image src="/p1.jpg" alt="" fill className={styles.image} />
+        {item.img && (
+          <div className={styles.imageContainer}>
+            <Image src={item.img} alt="" fill className={styles.image} />
+          </div>
+        )}
       </div>
       <div className={styles.textContainer}>
         <div className={styles.detail}>
-          <span className={styles.date}>11.02.2023 - </span>
-          <span className={styles.category}>Culture</span>
+          <span className={styles.date}>
+            {item.createdAt.substring(0, 10)} -{" "}
+          </span>
+          <span className={styles.category}>{item.catSlug}</span>
         </div>
-        <Link href="/">
+        <Link href={`/posts/${item.slug}`}>
           <h1>{item.title}</h1>
         </Link>
-        <p className={styles.desc}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-          libero blanditiis vero incidunt, impedit voluptates voluptatum beatae.
-          Accusantium odio ut inventore itaque provident, explicabo illo, beatae
-          aspernatur ab, repudiandae molestiae.
-        </p>
-        <Link href="/" className={styles.link}>
+        <p className={styles.desc}>{item.desc.substring(0, 60)}</p>
+        <Link href={`/posts/${item.slug}`} className={styles.link}>
           Read more
         </Link>
       </div>

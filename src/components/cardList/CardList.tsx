@@ -9,10 +9,13 @@ interface Post {
   page: number;
 }
 
-const getdata = async (page: number) => {
-  const res = await fetch(`http://localhost:3000/api/posts?page=${page}`, {
-    cache: "no-store",
-  });
+const getdata = async (page: number, cat) => {
+  const res = await fetch(
+    `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("failed to fetch page from CardList");
@@ -20,8 +23,8 @@ const getdata = async (page: number) => {
   return res.json();
 };
 
-const CardList = async ({ page }: { page: number }) => {
-  const { posts, count } = await getdata(page);
+const CardList = async ({ page, cat }: { page: number }) => {
+  const { posts, count } = await getdata(page, cat);
 
   const POST_PER_PAGE = 2;
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
